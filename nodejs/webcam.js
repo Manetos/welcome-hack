@@ -1,6 +1,5 @@
 'use strict';
 var spawn = require('child_process').spawn;
-var fs = require('fs');
 
 var WebCam = module.exports = function WebCam(device, quality) {
     this.device = device || '/dev/video0';

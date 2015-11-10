@@ -12,7 +12,7 @@ void setup(){
     //give the sensor some time to calibrate
     Serial.println("DEBUG: startup");
     Serial.println("DEBUG: calibrating sensor");
-    // delay(1000 * 30); FIXME
+    delay(1000 * 30); // FIXME
     Serial.println("DEBUG: done");
     Serial.println("DEBUG: SENSOR ACTIVE");
 }
