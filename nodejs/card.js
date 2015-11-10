@@ -17,7 +17,7 @@ util.inherits(Card, EventEmitter);
 Card.prototype.init = function init() {
     var self = this;
     this.arduino.on('RAW:CARD', function(rawId) {
-        var cardId = parseInt(rawId, 16);
+        var cardId = parseInt(rawId, 16).toString(16);
         if (cardId === self.lastCard && false) {
             return;
         }
