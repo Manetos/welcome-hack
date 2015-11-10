@@ -18,7 +18,7 @@ Card.prototype.init = function init() {
     var self = this;
     this.arduino.on('RAW:CARD', function(rawId) {
         var cardId = parseInt(rawId, 16);
-        if (cardId === self.lastCard) {
+        if (cardId === self.lastCard && false) {
             return;
         }
         self.lastCard = cardId;
