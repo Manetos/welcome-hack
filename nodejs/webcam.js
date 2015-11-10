@@ -31,5 +31,5 @@ WebCam.prototype.capture = function capture(filename, cb) {
 
 if (!module.parent) {
     var webcam = new WebCam();
-    webcam.capture(new Date().toISOString() + '.jpeg');
+    webcam.capture('./images/' + new Date().toISOString() + '.jpeg');
 }
