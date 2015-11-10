@@ -1,5 +1,8 @@
 'use strict';
 
+var express = require('express');
+var app = express.createServer();
+
 var util = require('util');
 
 var UserDB = require('./user_db');
@@ -18,6 +21,9 @@ var card = new Card(arduino);
 var speech = new Speech();
 
 var userdb = new UserDB();
+
+app.use(express.static(__dirname + '/public'));
+app.listen(8080);
 
 prox.on('motion', function() {
     console.log('Sensed motion');
