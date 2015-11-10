@@ -47,5 +47,6 @@ Greeting.prototype.greet = function greet(cb) {
         }
 
         self.speech.greetUser('guest');
+        cb();
     }, 30000);
 };
