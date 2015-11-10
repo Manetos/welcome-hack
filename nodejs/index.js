@@ -15,7 +15,9 @@ var Speech = require('./speech');
 var arduino = new Arduino();
 
 var cam = new WebCam();
-var prox = new Proximity(arduino);
+var prox = new Proximity(arduino, {
+    sensitivity: 10
+});
 var card = new Card(arduino);
 var speech = new Speech();
 
@@ -24,11 +26,14 @@ var userdb = new UserDB();
 app.use(express.static(__dirname + '/images'));
 app.listen(8080);
 
-prox.on('motion', function() {
+function onMotion() {
     console.log('Sensed motion');
     cam.capture(new Date().toISOString() + '.jpeg');
     speech.sayWelcome();
 
     var greeting = new Greeting(card, speech, userdb);
-    greeting.greet();
-});
+    greeting.greet(function() {
+        prox.once('motion', onMotion);
+    });
+}
+prox.once('motion', onMotion);

@@ -8,7 +8,7 @@ var Greeting = module.exports = function Greeting(card, speech, userdb) {
     this.speech = speech;
 };
 
-Greeting.prototype.greet = function greet() {
+Greeting.prototype.greet = function greet(cb) {
     var self = this;
     this.timeout = null;
     this.cardListener = null;
@@ -21,7 +21,7 @@ Greeting.prototype.greet = function greet() {
             }
             if (err) {
                 console.log('Failed to read user from database', err);
-                return;
+                return cb(err);
             }
 
             if (user) {
@@ -33,6 +33,7 @@ Greeting.prototype.greet = function greet() {
                 self.userdb.registerUser(id);
                 self.speech.identifyYourself();
             }
+            cb();
         });
     }
 
@@ -46,5 +47,5 @@ Greeting.prototype.greet = function greet() {
         }
 
         self.speech.greetUser('guest');
-    }, 5000);
+    }, 30000);
 };
