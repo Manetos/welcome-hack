@@ -5,8 +5,8 @@ var Speech = module.exports = function Speech() {
 };
 
 Speech.prototype.sayWelcome = function sayWelcome() {
-    var child = spawn('cvlc',
-                      ['--play-and-exit', './hello.wav']);
+    var child = spawn('aplay',
+                      ['-D', 'hw:1', 'hello.wav']);
     child.on('exit', function() {
         console.log('finish playing welcome');
     });
