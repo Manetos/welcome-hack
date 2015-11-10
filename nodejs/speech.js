@@ -8,7 +8,7 @@ Speech.prototype.sayWelcome = function sayWelcome(name) {
     var child = spawn('aplay',
                       ['-D', 'hw:1', name + 'welcome.mp3']);
     child.on('exit', function() {
-        this.sayName(name);
+        this._sayName(name);
     }.bind(this));
 };
 
