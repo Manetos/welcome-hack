@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "moment": "^2.10.6",
-    "play-audio": "^0.1.0",
     "serialport": "^2.0.4"
   }
 }
