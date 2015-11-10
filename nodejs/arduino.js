@@ -46,13 +46,14 @@ Arduino.prototype.init = function init() {
         self.arduino.on('data', function(data) {
             var line = data.trim();
             var command = getCommand(line);
+            var argLine = getData(line);
 
             if (command in self.commandHandlers) {
-                self.commandHandlers[command](getData(line));
+                self.commandHandlers[command](argLine);
             }
             else {
-                var args = ['RAW:' + command];
-                args.concat(data.split(/ /));
+                var eventName = ['RAW:' + command];
+                var args = eventName.concat(argLine.split(/ /));
                 self.emit.apply(self, args);
             }
         });
