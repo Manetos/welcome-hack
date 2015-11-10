@@ -2,7 +2,7 @@
   "name": "welcome-hack",
   "version": "0.0.0",
   "description": "",
-  "main": "proximity.js",
+  "main": "index.js",
   "scripts": {
     "prestart": "npm install",
     "start": "nodejs index.js",
