@@ -8,12 +8,14 @@ var WebCam = require('./webcam');
 var Proximity = require('./proximity');
 var Card = require('./card');
 var Arduino = require('./arduino');
+var Speech = require('./speech');
 
 var arduino = new Arduino();
 
 var cam = new WebCam();
 var prox = new Proximity(arduino);
 var card = new Card(arduino);
+var speech = new Speech();
 
 var userdb = new UserDB();
 
@@ -32,9 +34,11 @@ card.on('card', function(id) {
         if (user) {
             var msg = 'Welcome %s, your card id is %s';
             console.log(util.format(msg, user.name, id.toString(16)));
+            speech.sayWelcome(user.name);
         }
         else {
             userdb.registerUser(id);
+            speech.identifyYourself();
         }
     });
 });
