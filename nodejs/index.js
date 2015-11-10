@@ -22,6 +22,7 @@ var userdb = new UserDB();
 prox.on('motion', function() {
     console.log('Sensed motion');
     cam.capture(new Date().toISOString() + '.jpeg');
+    speech.sayWelcome();
 });
 
 card.on('card', function(id) {
@@ -34,7 +35,7 @@ card.on('card', function(id) {
         if (user) {
             var msg = 'Welcome %s, your card id is %s';
             console.log(util.format(msg, user.name, id.toString(16)));
-            speech.sayWelcome(user.name);
+            speech.greetUser(user.name.toLowerCase());
         }
         else {
             userdb.registerUser(id);
@@ -42,3 +43,7 @@ card.on('card', function(id) {
         }
     });
 });
+
+setTimeout(function(){
+    card.emit('card', 'db8e87b');
+}, 10000);
