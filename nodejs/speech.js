@@ -5,23 +5,23 @@ var Speech = module.exports = function Speech() {
 };
 
 Speech.prototype.sayWelcome = function sayWelcome(name) {
-    var child = spawn('aplay',
-                      ['-D', 'hw:1', './audio/welcome.wav']);
+    var child = spawn('mpg123',
+                      ['./audio/welcome.mp3']);
     child.on('exit', function() {
         this._sayName(name);
     }.bind(this));
 };
 
 Speech.prototype._sayName = function _sayName(name) {
-    var child = spawn('aplay',
-                      ['-D', 'hw:1', './audio/' + name + '.wav']);
+    var child = spawn('mpg123',
+                      ['./audio/' + name + '.mp3']);
     child.on('exit', function() {
         console.log('finish playing welcome');
     });
 };
 
 Speech.prototype.identifyYourself = function identifyYourself() {
-    var child = spawn('vlc',
+    var child = spawn('mpg123',
                       ['./audio/identify.wav']);
     child.on('exit', function() {
         console.log('finish playing welcome');
