@@ -3,9 +3,8 @@
 var express = require('express');
 var app = express();
 
-var util = require('util');
-
 var UserDB = require('./user_db');
+var Greeting = require('./greeting');
 
 var WebCam = require('./webcam');
 var Proximity = require('./proximity');
@@ -29,27 +28,7 @@ prox.on('motion', function() {
     console.log('Sensed motion');
     cam.capture(new Date().toISOString() + '.jpeg');
     speech.sayWelcome();
+
+    var greeting = new Greeting(card, speech, userdb);
+    greeting.greet();
 });
-
-card.on('card', function(id) {
-    userdb.getUser(id, function(err, user) {
-        if (err) {
-            console.log('Failed to read user from database', err);
-            return;
-        }
-
-        if (user) {
-            var msg = 'Welcome %s, your card id is %s';
-            console.log(util.format(msg, user.name, id.toString(16)));
-            speech.greetUser(user.name.toLowerCase());
-        }
-        else {
-            userdb.registerUser(id);
-            speech.identifyYourself();
-        }
-    });
-});
-
-setTimeout(function(){
-    card.emit('card', 'db8e87b');
-}, 10000);
