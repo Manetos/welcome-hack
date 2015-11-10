@@ -22,7 +22,7 @@ Speech.prototype._sayName = function _sayName(name) {
 
 Speech.prototype.identifyYourself = function identifyYourself() {
     var child = spawn('mpg123',
-                      ['./audio/identify.wav']);
+                      ['./audio/identify.mp3']);
     child.on('exit', function() {
         console.log('finish playing welcome');
     });
@@ -32,4 +32,5 @@ if (!module.parent) {
     var speech = new Speech();
     speech.sayWelcome('ebby');
     speech.sayWelcome('linus');
+    speech.identifyYourself();
 }
