@@ -30,6 +30,6 @@ Card.prototype.init = function init() {
 if (require.main === module) {
     var card = new Card();
     card.on('card', function(id) {
-        console.log('Card: ' + id);
+        console.log('Card: ' + id.toString(16));
     });
 }
