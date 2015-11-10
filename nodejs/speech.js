@@ -6,7 +6,7 @@ var Speech = module.exports = function Speech() {
 
 Speech.prototype.sayWelcome = function sayWelcome(name) {
     var child = spawn('aplay',
-                      ['-D', 'hw:1', name + 'welcome.mp3']);
+                      ['-D', 'hw:1', './audio/welcome.mp3']);
     child.on('exit', function() {
         this._sayName(name);
     }.bind(this));
