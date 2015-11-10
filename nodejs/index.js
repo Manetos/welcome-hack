@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-var app = express.createServer();
+var app = express();
 
 var util = require('util');
 
